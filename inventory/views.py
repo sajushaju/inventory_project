@@ -4,9 +4,12 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Product
+from .models import Product,User
 from .serializers import ProductSerializer
 from django.shortcuts import get_object_or_404
+from rest_framework.viewsets import ModelViewSet
+
+from .serializers import UserSerializer
 
 
 class ProductListCreateAPIView(APIView):
@@ -50,3 +53,11 @@ class ProductRetrieveUpdateDeleteAPIView(APIView):
         product = get_object_or_404(Product, pk=pk)
         product.delete()
         return Response({"message": "Deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+
+#create new api for user crud
+
+
+class UserViewSet(ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
