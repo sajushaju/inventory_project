@@ -58,6 +58,8 @@ class ProductAPITestCase(APITestCase):
 
 
 
+class UserAPITestCase(APITestCase):
+    pass
 
 
 
